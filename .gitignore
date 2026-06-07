@@ -1,0 +1,7 @@
+node_modules
+dist
+.vite
+*.local
+*.tsbuildinfo
+dev-server*.log
+public/media/hero.mp4
