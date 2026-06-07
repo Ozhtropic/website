@@ -954,6 +954,15 @@ button {
     height: 600px;
   }
 
+  .hero-stage-mask {
+    mask-image: none;
+  }
+
+  .hero-stage-stack {
+    transition: none;
+    will-change: auto;
+  }
+
   .hero-rail {
     display: none;
   }

@@ -4,10 +4,16 @@ import type { SiteContent } from "../content/siteContent";
 
 const LEFT_SCROLL_DISTANCE = 1560;
 const RAIL_SCROLL_DISTANCE = 920;
+const MOBILE_QUERY = "(max-width: 700px), (pointer: coarse)";
 
 function prefersReducedMotion() {
   if (typeof window === "undefined") return false;
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function getMobileTextFlow() {
+  if (typeof window === "undefined") return false;
+  return window.matchMedia(MOBILE_QUERY).matches;
 }
 
 function splitAccent(title: string, accent: string) {
@@ -24,6 +30,7 @@ export function Hero({ content }: HeroProps) {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
+  const [mobileTextFlow, setMobileTextFlow] = useState(getMobileTextFlow);
   const { brand, finalCta, heroRail, heroStages, ui } = content;
 
   useEffect(() => {
@@ -34,7 +41,14 @@ export function Hero({ content }: HeroProps) {
   }, []);
 
   useEffect(() => {
-    if (reducedMotion) {
+    const query = window.matchMedia(MOBILE_QUERY);
+    const update = () => setMobileTextFlow(query.matches);
+    query.addEventListener("change", update);
+    return () => query.removeEventListener("change", update);
+  }, []);
+
+  useEffect(() => {
+    if (reducedMotion || mobileTextFlow) {
       setProgress(0);
       return;
     }
@@ -57,7 +71,7 @@ export function Hero({ content }: HeroProps) {
       window.removeEventListener("scroll", compute);
       window.removeEventListener("resize", compute);
     };
-  }, [reducedMotion]);
+  }, [mobileTextFlow, reducedMotion]);
 
   return (
     <section id="hero-zone" className="hero-zone" ref={sectionRef}>
@@ -68,6 +82,8 @@ export function Hero({ content }: HeroProps) {
               className="hero-stage-stack"
               style={
                 reducedMotion
+                  ? undefined
+                  : mobileTextFlow
                   ? undefined
                   : { transform: `translate3d(0, ${-progress * LEFT_SCROLL_DISTANCE}px, 0)` }
               }
@@ -105,6 +121,8 @@ export function Hero({ content }: HeroProps) {
               className="hero-rail-stack"
               style={
                 reducedMotion
+                  ? undefined
+                  : mobileTextFlow
                   ? undefined
                   : { transform: `translate3d(0, ${-progress * RAIL_SCROLL_DISTANCE}px, 0)` }
               }
