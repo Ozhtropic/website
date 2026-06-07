@@ -20,6 +20,7 @@ export function VideoBackdrop() {
   const loopActiveRef = useRef(false);
   const loopRequestedRef = useRef(false);
   const loopLoadRequestedRef = useRef(false);
+  const mainInitializedRef = useRef(false);
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [loopActive, setLoopActive] = useState(false);
@@ -79,8 +80,11 @@ export function VideoBackdrop() {
 
     const handleLoaded = () => {
       durationRef.current = Number.isFinite(mainVideo.duration) ? mainVideo.duration : 0;
-      mainVideo.currentTime = 0;
-      mainVideo.pause();
+      if (!mainInitializedRef.current) {
+        mainInitializedRef.current = true;
+        mainVideo.currentTime = 0;
+        mainVideo.pause();
+      }
       computeTarget();
       setReady(true);
     };
@@ -144,22 +148,36 @@ export function VideoBackdrop() {
 
     mainVideo.muted = true;
     mainVideo.playsInline = true;
+    mainVideo.defaultMuted = true;
+    mainVideo.setAttribute("muted", "");
+    mainVideo.setAttribute("playsinline", "");
+    mainVideo.setAttribute("webkit-playsinline", "");
     loopVideo.muted = true;
     loopVideo.playsInline = true;
+    loopVideo.defaultMuted = true;
     loopVideo.loop = true;
+    loopVideo.setAttribute("muted", "");
+    loopVideo.setAttribute("playsinline", "");
+    loopVideo.setAttribute("webkit-playsinline", "");
 
     mainVideo.addEventListener("loadedmetadata", handleLoaded);
+    mainVideo.addEventListener("loadeddata", handleLoaded);
+    mainVideo.addEventListener("canplay", handleLoaded);
     mainVideo.addEventListener("error", handleError);
     loopVideo.addEventListener("error", handleError);
     window.addEventListener("scroll", handleScroll, { passive: true });
     window.addEventListener("resize", computeTarget);
     motionQuery.addEventListener("change", handleMotionChange);
 
+    mainVideo.load();
+    loopVideo.load();
     computeTarget();
     rafRef.current = window.requestAnimationFrame(tick);
 
     return () => {
       mainVideo.removeEventListener("loadedmetadata", handleLoaded);
+      mainVideo.removeEventListener("loadeddata", handleLoaded);
+      mainVideo.removeEventListener("canplay", handleLoaded);
       mainVideo.removeEventListener("error", handleError);
       loopVideo.removeEventListener("error", handleError);
       window.removeEventListener("scroll", handleScroll);
@@ -181,6 +199,7 @@ export function VideoBackdrop() {
         <video
           ref={mainRef}
           src={MAIN_VIDEO_SRC}
+          autoPlay
           muted
           playsInline
           preload="auto"
