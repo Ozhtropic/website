@@ -2,7 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { LOOP_VIDEO_SRC, MAIN_VIDEO_SRC } from "../config/media";
 
 const HERO_ID = "hero-zone";
-const SCROLL_ACTIVE_MS = 220;
+const SCRUB_EASE = 0.24;
+const SEEK_FRAME_MS = 33;
+const SEEK_MIN_DIFF = 0.035;
 
 function getReducedMotion() {
   if (typeof window === "undefined") return false;
@@ -15,7 +17,7 @@ export function VideoBackdrop() {
   const durationRef = useRef(0);
   const targetRef = useRef(0);
   const rafRef = useRef<number | null>(null);
-  const lastScrollAtRef = useRef(0);
+  const lastSeekAtRef = useRef(0);
   const reducedRef = useRef(getReducedMotion());
   const loopActiveRef = useRef(false);
   const loopRequestedRef = useRef(false);
@@ -101,22 +103,19 @@ export function VideoBackdrop() {
       if (mainVideo.readyState >= 2 && duration > 0 && !reducedRef.current && !loopActiveRef.current) {
         const target = Math.max(0, Math.min(duration, targetRef.current));
         const diff = target - mainVideo.currentTime;
-        const scrollIsActive = window.performance.now() - lastScrollAtRef.current < SCROLL_ACTIVE_MS;
+        const now = window.performance.now();
 
         if (Math.abs(diff) < 0.05) {
           if (!mainVideo.paused) mainVideo.pause();
           if (loopRequestedRef.current) {
             playLoop();
           }
-        } else if (diff > 0 && scrollIsActive) {
-          mainVideo.playbackRate = Math.min(16, Math.max(1, diff * 6));
-          if (mainVideo.paused) mainVideo.play().catch(() => undefined);
-        } else {
+        } else if (now - lastSeekAtRef.current >= SEEK_FRAME_MS) {
+          const nextTime = Math.abs(diff) < SEEK_MIN_DIFF ? target : mainVideo.currentTime + diff * SCRUB_EASE;
+
+          lastSeekAtRef.current = now;
           mainVideo.pause();
-          if (diff < 0) {
-            if (typeof mainVideo.fastSeek === "function") mainVideo.fastSeek(target);
-            else mainVideo.currentTime = target;
-          }
+          mainVideo.currentTime = Math.max(0, Math.min(duration, nextTime));
         }
       }
 
@@ -140,7 +139,6 @@ export function VideoBackdrop() {
     };
 
     const handleScroll = () => {
-      lastScrollAtRef.current = window.performance.now();
       computeTarget();
     };
 
