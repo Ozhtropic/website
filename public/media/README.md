@@ -1,11 +1,13 @@
-Place the cinematic website videos here:
+Place the cinematic website videos here.
 
-- `main.mp4` is the scroll-controlled hero sequence.
-- `loop.mp4` is the continuous neural activity background after the hero.
+The active filenames are intentionally non-generic:
+
+- `oz-cinematic-7f3a91.mp4` is the scroll-controlled hero sequence.
+- `oz-neural-loop-c42b18.mp4` is the continuous neural activity background after the hero.
 
 ```txt
-/media/main.mp4
-/media/loop.mp4
+/media/oz-cinematic-7f3a91.mp4
+/media/oz-neural-loop-c42b18.mp4
 ```
 
 Until both files exist, the video backdrop shows a neutral Ozthropic fallback.

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type SyntheticEvent } from "react";
 import { LOOP_VIDEO_SRC, MAIN_VIDEO_SRC } from "../config/media";
 
 const HERO_ID = "hero-zone";
@@ -27,6 +27,10 @@ export function VideoBackdrop() {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
   const [loopActive, setLoopActive] = useState(false);
+
+  const blockVideoContext = (event: SyntheticEvent) => {
+    event.preventDefault();
+  };
 
   useEffect(() => {
     const mainVideo = mainRef.current;
@@ -196,7 +200,7 @@ export function VideoBackdrop() {
       <div className="video-fallback">
         <div className="fallback-mark">Ozthropic</div>
         <div className="fallback-lines" />
-        {failed && <span className="fallback-note">Add videos at public/media/main.mp4 and public/media/loop.mp4</span>}
+        {failed && <span className="fallback-note">Video backdrop unavailable</span>}
       </div>
       {!failed && (
         <video
@@ -206,6 +210,12 @@ export function VideoBackdrop() {
           muted
           playsInline
           preload="auto"
+          disablePictureInPicture
+          disableRemotePlayback
+          draggable={false}
+          controlsList="nodownload noplaybackrate noremoteplayback"
+          onContextMenu={blockVideoContext}
+          onDragStart={blockVideoContext}
           className={`${ready ? "primary-video is-ready" : "primary-video"}${loopActive ? " is-tail-hidden" : ""}`}
         />
       )}
@@ -217,6 +227,12 @@ export function VideoBackdrop() {
           playsInline
           preload="none"
           loop
+          disablePictureInPicture
+          disableRemotePlayback
+          draggable={false}
+          controlsList="nodownload noplaybackrate noremoteplayback"
+          onContextMenu={blockVideoContext}
+          onDragStart={blockVideoContext}
           className={loopActive ? "loop-video is-visible" : "loop-video"}
         />
       )}
