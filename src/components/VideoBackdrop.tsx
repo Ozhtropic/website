@@ -5,6 +5,7 @@ const HERO_ID = "hero-zone";
 const SCRUB_EASE = 0.24;
 const SEEK_FRAME_MS = 33;
 const SEEK_MIN_DIFF = 0.035;
+const LOOP_PRELOAD_PROGRESS = 0.72;
 
 function getReducedMotion() {
   if (typeof window === "undefined") return false;
@@ -78,6 +79,11 @@ export function VideoBackdrop() {
       const travel = Math.max(1, hero.offsetHeight - viewportHeight);
       const progress = Math.max(0, Math.min(1, -rect.top / travel));
       targetRef.current = progress * duration;
+
+      if (progress >= LOOP_PRELOAD_PROGRESS && !loopLoadRequestedRef.current) {
+        loopLoadRequestedRef.current = true;
+        loopVideo.load();
+      }
     };
 
     const handleLoaded = () => {
@@ -168,7 +174,6 @@ export function VideoBackdrop() {
     motionQuery.addEventListener("change", handleMotionChange);
 
     mainVideo.load();
-    loopVideo.load();
     computeTarget();
     rafRef.current = window.requestAnimationFrame(tick);
 
@@ -210,7 +215,7 @@ export function VideoBackdrop() {
           src={LOOP_VIDEO_SRC}
           muted
           playsInline
-          preload="auto"
+          preload="none"
           loop
           className={loopActive ? "loop-video is-visible" : "loop-video"}
         />
