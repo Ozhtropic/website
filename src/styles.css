@@ -686,10 +686,11 @@ button {
 
 .promise-statement p:not(.eyebrow) {
   margin: 32px 0 0;
-  max-width: 46ch;
+  max-width: 94ch;
   color: rgba(255, 255, 255, 0.78);
   font-size: 17px;
   line-height: 1.7;
+  white-space: pre-line;
 }
 
 .promise-proof {

@@ -222,7 +222,7 @@ const en: SiteContent = {
     eyebrow: "The Ozthropic promise",
     title: "Affordable to start.\nFair to stay.\nBuilt around the\nhumans who use it.",
     body:
-      "AI should not only be for big companies. Ozthropic gives small and medium-sized businesses a practical way to test automation, see the value, and then keep improving what works.",
+      "AI should not only be for big companies. Ozthropic gives small and medium-sized businesses\na practical way to test automation, see the value, and then keep improving what works.",
     proof: [
       { label: "Efficiency", text: "Every system must measurably give time back." },
       { label: "Accessibility", text: "Designed for teams without in-house tech expertise." },
