@@ -103,7 +103,7 @@ const en: SiteContent = {
       "Ozthropic helps Australian small and medium-sized businesses reclaim time and capital with human-centric AI automation.",
   },
   ui: {
-    booking: "Book",
+    booking: "Book a consultation",
     bookingConsultation: "Book a consultation",
     languageLabel: "Language",
     english: "EN",
