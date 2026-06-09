@@ -9,7 +9,7 @@ export function Services({ content }: ServicesProps) {
   const { services, servicesIntro } = content;
 
   return (
-    <section id="services" className="surface surface-transparent on-dark">
+    <section id="services" className="surface surface-contact-tint on-dark">
       <div className="section-inner">
         <div className="split-heading">
           <div className="reveal">

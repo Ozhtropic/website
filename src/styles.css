@@ -559,6 +559,24 @@ button {
   background: transparent;
 }
 
+.surface-contact-tint {
+  overflow: hidden;
+  background: transparent;
+}
+
+.surface-contact-tint::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  pointer-events: none;
+}
+
+.surface-contact-tint > .section-inner {
+  position: relative;
+  z-index: 1;
+}
+
 .section-inner {
   max-width: var(--container);
   margin: 0 auto;
