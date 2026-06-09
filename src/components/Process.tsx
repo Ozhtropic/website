@@ -10,12 +10,9 @@ export function Process({ content }: ProcessProps) {
   return (
     <section id="process" className="surface surface-transparent on-dark">
       <div className="section-inner">
-        <div className="split-heading">
-          <div className="reveal">
-            <p className="eyebrow eyebrow-dark">{processIntro.eyebrow}</p>
-            <h2>{processIntro.title}</h2>
-          </div>
-          <div className="glass-chip reveal">{processIntro.chip}</div>
+        <div className="process-heading reveal">
+          <p className="eyebrow eyebrow-dark">{processIntro.eyebrow}</p>
+          <h2>{processIntro.chip}</h2>
         </div>
 
         <ol className="process-grid">

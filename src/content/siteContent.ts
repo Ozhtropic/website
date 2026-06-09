@@ -63,7 +63,6 @@ export type SiteContent = {
   };
   processIntro: {
     eyebrow: string;
-    title: string;
     chip: string;
   };
   process: Array<{
@@ -233,7 +232,6 @@ const en: SiteContent = {
   },
   processIntro: {
     eyebrow: "How it starts",
-    title: "One useful workflow first. Then the next one.",
     chip: "Four steps · clear scope · visible value",
   },
   process: [
@@ -433,7 +431,6 @@ const fa: SiteContent = {
   },
   processIntro: {
     eyebrow: "از کجا شروع می‌کنیم",
-    title: "اول یک جریان کاری مفید. بعد جریان بعدی.",
     chip: "چهار مرحله · محدوده روشن · ارزش قابل مشاهده",
   },
   process: [

@@ -744,6 +744,20 @@ button {
   text-transform: uppercase;
 }
 
+.process-heading {
+  margin-bottom: 64px;
+}
+
+.process-heading h2 {
+  max-width: 15ch;
+  margin: 24px 0 0;
+  color: var(--white);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 0.98;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
 .process-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
