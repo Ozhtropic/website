@@ -170,7 +170,7 @@ const en: SiteContent = {
   ],
   servicesIntro: {
     eyebrow: "What we build",
-    title: "Practical AI systems for the parts of business that quietly eat the week.",
+    title: "Practical AI systems for\nthe parts of business that\nquietly eat the week.",
     note:
       "Built for owners and teams who are hands-on with clients, bookings, phones, quoting, emails, and daily follow-up.",
   },
