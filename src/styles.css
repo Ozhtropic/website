@@ -605,6 +605,20 @@ button {
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
 }
 
+.services-heading {
+  margin-bottom: 64px;
+}
+
+.services-heading h2 {
+  margin: 24px 0 0;
+  max-width: 17ch;
+  color: var(--white);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 800;
+  line-height: 0.98;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
 .heading-note {
   border: 1px solid rgba(255, 255, 255, 0.62);
   border-radius: 10px;

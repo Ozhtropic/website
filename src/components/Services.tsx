@@ -11,13 +11,10 @@ export function Services({ content }: ServicesProps) {
   return (
     <section id="services" className="surface surface-contact-tint on-dark">
       <div className="section-inner">
-        <div className="split-heading">
+        <div className="services-heading">
           <div className="reveal">
             <p className="eyebrow eyebrow-chip">{servicesIntro.eyebrow}</p>
             <h2>{servicesIntro.title}</h2>
-          </div>
-          <div className="heading-note reveal">
-            <p>{servicesIntro.note}</p>
           </div>
         </div>
 
