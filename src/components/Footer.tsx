@@ -1,18 +1,16 @@
 import type { SiteContent } from "../content/siteContent";
-import { OzLogo } from "./OzLogo";
 
 type FooterProps = {
   content: SiteContent;
 };
 
 export function Footer({ content }: FooterProps) {
-  const { brand, footer } = content;
+  const { footer } = content;
 
   return (
     <footer className="site-footer">
       <div className="footer-card">
         <div className="footer-intro">
-          <OzLogo brand={brand} tone="dark" />
           <p>{footer.blurb}</p>
         </div>
         <div className="footer-links">
