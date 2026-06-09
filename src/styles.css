@@ -163,10 +163,26 @@ button {
   backdrop-filter: blur(12px);
 }
 
+.video-watermark-cover {
+  position: absolute;
+  right: clamp(22px, 5.8vw, 118px);
+  bottom: clamp(44px, 7.8vw, 124px);
+  z-index: 3;
+  width: clamp(72px, 7.4vw, 132px);
+  height: clamp(72px, 7.4vw, 132px);
+  border-radius: 50%;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(64, 64, 64, 0.72) 0%, rgba(64, 64, 64, 0.52) 42%, rgba(64, 64, 64, 0) 72%),
+    radial-gradient(circle, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0) 62%);
+  filter: blur(8px);
+  opacity: 0.78;
+}
+
 .video-shade {
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: 4;
   background:
     linear-gradient(90deg, rgba(0, 0, 0, 0.5), transparent 36%, transparent 62%, rgba(0, 0, 0, 0.28)),
     linear-gradient(180deg, rgba(0, 0, 0, 0.22), transparent 24%, rgba(0, 0, 0, 0.36));

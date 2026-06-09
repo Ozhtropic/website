@@ -236,6 +236,7 @@ export function VideoBackdrop() {
           className={loopActive ? "loop-video is-visible" : "loop-video"}
         />
       )}
+      <div className="video-watermark-cover" />
       <div className="video-shade" />
     </div>
   );
