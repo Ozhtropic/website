@@ -28,9 +28,6 @@ export function Footer({ content }: FooterProps) {
           ))}
         </div>
       </div>
-      <div className="footer-wordmark" aria-hidden="true">
-        {footer.wordmark}
-      </div>
       <div className="footer-legal">
         <span>{footer.legalLeft}</span>
         <span>{footer.legalRight}</span>

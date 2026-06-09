@@ -872,17 +872,6 @@ button {
   font-weight: 600;
 }
 
-.footer-wordmark {
-  margin-top: 38px;
-  overflow: hidden;
-  color: rgba(255, 255, 255, 0.84);
-  font-size: clamp(58px, 13vw, 220px);
-  font-weight: 800;
-  line-height: 0.82;
-  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.28);
-  white-space: nowrap;
-}
-
 .footer-legal {
   display: flex;
   justify-content: space-between;

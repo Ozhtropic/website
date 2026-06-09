@@ -80,7 +80,6 @@ export type SiteContent = {
   };
   footer: {
     blurb: string;
-    wordmark: string;
     legalLeft: string;
     legalRight: string;
     columns: Array<{ title: string; links: Link[] }>;
@@ -271,7 +270,6 @@ const en: SiteContent = {
   },
   footer: {
     blurb: "Human-Centric AI for Australian businesses, built around people, not just systems.",
-    wordmark: "Ozthropic",
     legalLeft: "© 2026 Ozthropic. Australia.",
     legalRight: "Human-Centric AI for Australian Businesses",
     columns: [
@@ -470,7 +468,6 @@ const fa: SiteContent = {
   },
   footer: {
     blurb: "هوش مصنوعی انسان‌محور برای کسب‌وکارهای استرالیایی؛ ساخته‌شده بر محور انسان، نه فقط سیستم.",
-    wordmark: "Ozthropic",
     legalLeft: "© 2026 Ozthropic. سیدنی، استرالیا.",
     legalRight: "هوش مصنوعی انسان‌محور برای کسب‌وکارهای استرالیایی",
     columns: [
