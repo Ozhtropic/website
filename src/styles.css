@@ -670,15 +670,15 @@ button {
 
 .promise-layout {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(320px, 4fr);
-  gap: clamp(48px, 12vw, 220px);
+  grid-template-columns: minmax(0, 1.45fr) minmax(360px, 0.85fr);
+  gap: clamp(44px, 6vw, 120px);
   align-items: start;
 }
 
 .promise-statement h2 {
   margin: 30px 0 0;
   max-width: 20ch;
-  font-size: clamp(44px, 6.6vw, 104px);
+  font-size: clamp(44px, 5.7vw, 92px);
   font-weight: 800;
   line-height: 0.97;
   white-space: pre-line;
