@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ArrowUpRight, Menu, X } from "lucide-react";
+import { ArrowUpRight, CalendarDays, Menu, X } from "lucide-react";
 import type { Language, SiteContent } from "../content/siteContent";
 import { OzLogo } from "./OzLogo";
 
@@ -28,9 +28,9 @@ export function Header({ content, language, onLanguageChange }: HeaderProps) {
 
         <div className="header-actions">
           <LanguageSwitch content={content} language={language} onLanguageChange={onLanguageChange} />
-          <a className="button button-light header-cta" href={`mailto:${brand.email}`}>
-            {ui.email}
-            <ArrowUpRight size={16} strokeWidth={1.8} />
+          <a className="button button-light header-cta" href={brand.bookingUrl} target="_blank" rel="noreferrer">
+            {ui.booking}
+            <CalendarDays size={16} strokeWidth={1.8} />
           </a>
         </div>
 
@@ -53,8 +53,14 @@ export function Header({ content, language, onLanguageChange }: HeaderProps) {
               {link.label}
             </a>
           ))}
-          <a className="button button-light" href={`mailto:${brand.email}`} onClick={() => setOpen(false)}>
-            {ui.emailOzthropic}
+          <a
+            className="button button-light"
+            href={brand.bookingUrl}
+            target="_blank"
+            rel="noreferrer"
+            onClick={() => setOpen(false)}
+          >
+            {ui.bookingConsultation}
             <ArrowUpRight size={16} strokeWidth={1.8} />
           </a>
         </div>

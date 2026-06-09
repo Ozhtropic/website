@@ -15,8 +15,8 @@ export type SiteContent = {
     description: string;
   };
   ui: {
-    email: string;
-    emailOzthropic: string;
+    booking: string;
+    bookingConsultation: string;
     languageLabel: string;
     english: string;
     persian: string;
@@ -32,6 +32,7 @@ export type SiteContent = {
     founder: string;
     location: string;
     email: string;
+    bookingUrl: string;
     website: string;
     instagram: string;
   };
@@ -90,6 +91,7 @@ const brandBase = {
   name: "Ozthropic",
   founder: "Daryoosh Asadi",
   email: "hello@ozthropic.com",
+  bookingUrl: "https://calendar.app.google/XbXdMXJdbpxisEH16",
   website: "www.ozthropic.com",
   instagram: "@ozthropic",
 };
@@ -101,8 +103,8 @@ const en: SiteContent = {
       "Ozthropic helps Australian small and medium-sized businesses reclaim time and capital with human-centric AI automation.",
   },
   ui: {
-    email: "Email",
-    emailOzthropic: "Email Ozthropic",
+    booking: "Book",
+    bookingConsultation: "Book a consultation",
     languageLabel: "Language",
     english: "EN",
     persian: "FA",
@@ -300,8 +302,8 @@ const fa: SiteContent = {
       "Ozthropic به کسب‌وکارهای کوچک و متوسط استرالیا کمک می‌کند با اتوماسیون هوش مصنوعی، زمان و سرمایه خود را آزاد کنند.",
   },
   ui: {
-    email: "ایمیل",
-    emailOzthropic: "ایمیل به Ozthropic",
+    booking: "رزرو",
+    bookingConsultation: "رزرو مشاوره",
     languageLabel: "زبان",
     english: "EN",
     persian: "FA",
