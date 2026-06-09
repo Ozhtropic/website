@@ -11,7 +11,10 @@ export function Footer({ content }: FooterProps) {
     <footer className="site-footer">
       <div className="footer-card">
         <div className="footer-intro">
-          <p>{footer.blurb}</p>
+          <p>
+            <span>{footer.blurbLead}</span>
+            <span className="footer-blurb-tail">{footer.blurbTail}</span>
+          </p>
         </div>
         <div className="footer-links">
           {footer.columns.map((column) => (

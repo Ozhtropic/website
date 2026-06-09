@@ -851,6 +851,10 @@ button {
   line-height: 1.08;
 }
 
+.footer-blurb-tail {
+  display: block;
+}
+
 .footer-links {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
