@@ -96,7 +96,7 @@ const brandBase = {
 
 const en: SiteContent = {
   meta: {
-    title: "Ozthropic | Human-Centric AI for Australian Business",
+    title: "Ozthropic | Human-Centric AI for Australian Businesses",
     description:
       "Ozthropic helps Australian small and medium-sized businesses reclaim time and capital with human-centric AI automation.",
   },
@@ -114,8 +114,8 @@ const en: SiteContent = {
   },
   brand: {
     ...brandBase,
-    tagline: "Human-Centric AI for Australian Business",
-    location: "Sydney, Australia",
+    tagline: "Human-Centric AI for Australian Businesses",
+    location: "Australia",
   },
   navLinks: [
     { label: "Services", href: "#services" },
@@ -147,8 +147,8 @@ const en: SiteContent = {
     },
   ],
   heroRail: [
-    { type: "muted", text: "Sydney · Australia" },
-    { type: "muted", text: "Small and medium-sized business" },
+    { type: "muted", text: "Australia" },
+    { type: "muted", text: "Small and medium-sized businesses" },
     { type: "spacer" },
     { type: "label", text: "Core systems" },
     { type: "hero", text: "AI phone agents" },
@@ -268,10 +268,10 @@ const en: SiteContent = {
     secondary: { label: "Explore services", href: "#services" },
   },
   footer: {
-    blurb: "Human-Centric AI for Australian business, built around people, not just systems.",
+    blurb: "Human-Centric AI for Australian businesses, built around people, not just systems.",
     wordmark: "Ozthropic",
-    legalLeft: "© 2026 Ozthropic. Sydney, Australia.",
-    legalRight: "Human-Centric AI for Australian Business",
+    legalLeft: "© 2026 Ozthropic. Australia.",
+    legalRight: "Human-Centric AI for Australian Businesses",
     columns: [
       {
         title: "Company",
