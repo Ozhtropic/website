@@ -220,7 +220,7 @@ const en: SiteContent = {
   ],
   promise: {
     eyebrow: "The Ozthropic promise",
-    title: "Affordable to start. Fair to stay. Built around the humans who use it.",
+    title: "Affordable to start.\nFair to stay.\nBuilt around the\nhumans who use it.",
     body:
       "AI should not only be for big companies. Ozthropic gives small and medium-sized businesses a practical way to test automation, see the value, and then keep improving what works.",
     proof: [

@@ -677,10 +677,11 @@ button {
 
 .promise-statement h2 {
   margin: 30px 0 0;
-  max-width: 13ch;
+  max-width: 20ch;
   font-size: clamp(44px, 6.6vw, 104px);
   font-weight: 800;
   line-height: 0.97;
+  white-space: pre-line;
 }
 
 .promise-statement p:not(.eyebrow) {
