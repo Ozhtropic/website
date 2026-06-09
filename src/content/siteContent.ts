@@ -96,9 +96,9 @@ const brandBase = {
 
 const en: SiteContent = {
   meta: {
-    title: "Ozthropic | AI Agents, Automation & Consultancy Services",
+    title: "Ozthropic | Human-Centric AI for Australian Business",
     description:
-      "Ozthropic helps Australian small and medium-sized businesses reclaim time and capital with AI agents, automation, and practical AI consultancy.",
+      "Ozthropic helps Australian small and medium-sized businesses reclaim time and capital with human-centric AI automation.",
   },
   ui: {
     email: "Email",
@@ -114,29 +114,29 @@ const en: SiteContent = {
   },
   brand: {
     ...brandBase,
-    tagline: "AI Agents, Automation & Consultancy Services",
+    tagline: "Human-Centric AI for Australian Business",
     location: "Sydney, Australia",
   },
   navLinks: [
-    { label: "AI Agents", href: "#services" },
-    { label: "Automation", href: "#promise" },
-    { label: "AI Consultancy", href: "#process" },
+    { label: "Services", href: "#services" },
+    { label: "Promise", href: "#promise" },
+    { label: "Process", href: "#process" },
     { label: "Contact", href: "#contact" },
   ],
   heroStages: [
     {
-      eyebrow: "Australian AI agents, automation & consultancy",
-      title: "AI agents and automation for small and medium-sized businesses.",
-      accent: "businesses",
+      eyebrow: "Australian AI Consultancy",
+      title: "AI built around people, not the other way around.",
+      accent: "people",
       body:
-        "Ozthropic designs AI agents, automation, and practical AI consultancy for Australian small and medium-sized businesses, with the humans who use it kept firmly at the centre.",
+        "Ozthropic designs intelligent automation for Australian small and medium-sized businesses, with the humans who use it kept firmly at the centre.",
     },
     {
       eyebrow: "Less overhead. More growth.",
       title: "Reclaim the hours hiding inside admin, calls, email, and follow-up.",
       accent: "hours",
       body:
-        "AI agents, booking workflows, inbox triage, quoting, invoicing, and marketing systems that keep work moving while you run the business.",
+        "AI phone agents, booking workflows, inbox triage, quoting, invoicing, and marketing systems that keep work moving while you run the business.",
     },
     {
       eyebrow: "Affordable to start. Fair to stay.",
@@ -148,10 +148,10 @@ const en: SiteContent = {
   ],
   heroRail: [
     { type: "muted", text: "Sydney · Australia" },
-    { type: "muted", text: "Small and medium-sized businesses" },
+    { type: "muted", text: "Small and medium-sized business" },
     { type: "spacer" },
     { type: "label", text: "Core systems" },
-    { type: "hero", text: "AI agents" },
+    { type: "hero", text: "AI phone agents" },
     { type: "body", text: "Bookings · CRM · reminders" },
     { type: "body", text: "Email summaries · draft replies" },
     { type: "spacer" },
@@ -175,7 +175,7 @@ const en: SiteContent = {
   services: [
     {
       number: "01",
-      title: "AI Agents",
+      title: "AI Phone Agents",
       description:
         "Friendly virtual receptionists that answer calls, qualify enquiries, and book appointments based on real-time availability.",
       tags: ["Calls", "Bookings", "Qualification"],
@@ -268,17 +268,17 @@ const en: SiteContent = {
     secondary: { label: "Explore services", href: "#services" },
   },
   footer: {
-    blurb: "AI agents, automation, and practical AI consultancy for Australian small and medium-sized businesses.",
+    blurb: "Human-Centric AI for Australian business, built around people, not just systems.",
     wordmark: "Ozthropic",
     legalLeft: "© 2026 Ozthropic. Sydney, Australia.",
-    legalRight: "AI Agents, Automation & Consultancy Services",
+    legalRight: "Human-Centric AI for Australian Business",
     columns: [
       {
         title: "Company",
         links: [
-          { label: "AI Agents", href: "#services" },
-          { label: "Automation", href: "#promise" },
-          { label: "AI Consultancy", href: "#process" },
+          { label: "Services", href: "#services" },
+          { label: "Promise", href: "#promise" },
+          { label: "Process", href: "#process" },
         ],
       },
       {
