@@ -756,6 +756,7 @@ button {
   font-weight: 800;
   line-height: 0.98;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+  white-space: pre-line;
 }
 
 .process-grid {
