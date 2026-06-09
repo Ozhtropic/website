@@ -232,7 +232,7 @@ const en: SiteContent = {
   },
   processIntro: {
     eyebrow: "How it starts",
-    chip: "Four steps.\nClear Scope.\nVisible Value",
+    chip: "Four steps. Clear Scope. Visible Value",
   },
   process: [
     {

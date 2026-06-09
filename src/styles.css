@@ -787,14 +787,13 @@ button {
 }
 
 .process-heading h2 {
-  max-width: 15ch;
+  max-width: 44ch;
   margin: 24px 0 0;
   color: var(--white);
   font-size: clamp(40px, 5vw, 72px);
   font-weight: 800;
   line-height: 0.98;
   text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
-  white-space: pre-line;
 }
 
 .process-grid {
