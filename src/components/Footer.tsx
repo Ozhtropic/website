@@ -12,8 +12,9 @@ export function Footer({ content }: FooterProps) {
       <div className="footer-card">
         <div className="footer-intro">
           <p>
-            <span>{footer.blurbLead}</span>
-            <span className="footer-blurb-tail">{footer.blurbTail}</span>
+            <span className="footer-blurb-line">{footer.blurbLead}</span>
+            {footer.blurbMiddle && <span className="footer-blurb-line">{footer.blurbMiddle}</span>}
+            <span className="footer-blurb-line">{footer.blurbTail}</span>
           </p>
         </div>
         <div className="footer-links">

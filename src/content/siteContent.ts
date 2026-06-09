@@ -80,6 +80,7 @@ export type SiteContent = {
   };
   footer: {
     blurbLead: string;
+    blurbMiddle?: string;
     blurbTail: string;
     legalLeft: string;
     legalRight: string;
@@ -270,8 +271,9 @@ const en: SiteContent = {
     secondary: { label: "Explore services", href: "#services" },
   },
   footer: {
-    blurbLead: "Human-Centric AI for Australian businesses, built around people",
-    blurbTail: "not just systems.",
+    blurbLead: "Human-Centric AI for Australian",
+    blurbMiddle: "businesses, built around",
+    blurbTail: "people not just systems.",
     legalLeft: "© 2026 Ozthropic. Australia.",
     legalRight: "Human-Centric AI for Australian Businesses",
     columns: [

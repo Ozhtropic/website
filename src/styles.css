@@ -843,7 +843,7 @@ button {
 }
 
 .footer-intro p {
-  max-width: 31ch;
+  max-width: 34ch;
   margin: 0;
   color: var(--charcoal);
   font-size: 34px;
@@ -851,7 +851,7 @@ button {
   line-height: 1.08;
 }
 
-.footer-blurb-tail {
+.footer-blurb-line {
   display: block;
 }
 
