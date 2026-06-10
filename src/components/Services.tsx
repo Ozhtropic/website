@@ -21,10 +21,7 @@ export function Services({ content }: ServicesProps) {
         <div className="card-grid">
           {services.map((service) => (
             <article className="service-card reveal" key={service.number}>
-              <div className="card-top">
-                <span className="card-number">{service.number}</span>
-                <ArrowUpRight size={22} strokeWidth={1.5} />
-              </div>
+              <ArrowUpRight className="service-card-icon" size={20} strokeWidth={1.5} aria-hidden="true" />
               <div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
