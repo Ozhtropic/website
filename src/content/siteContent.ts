@@ -163,9 +163,6 @@ const en: SiteContent = {
     { type: "spacer" },
     { type: "label", text: "Promise" },
     { type: "hero", text: "Built around the humans who use it." },
-    { type: "spacer" },
-    { type: "label", text: "Start" },
-    { type: "body", text: brandBase.email },
   ],
   servicesIntro: {
     eyebrow: "What we build",
@@ -362,9 +359,6 @@ const fa: SiteContent = {
     { type: "spacer" },
     { type: "label", text: "تعهد" },
     { type: "hero", text: "ساخته‌شده بر محور انسان‌هایی که از آن استفاده می‌کنند." },
-    { type: "spacer" },
-    { type: "label", text: "شروع" },
-    { type: "body", text: brandBase.email },
   ],
   servicesIntro: {
     eyebrow: "آنچه می‌سازیم",
