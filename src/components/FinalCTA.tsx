@@ -10,7 +10,6 @@ export function FinalCTA({ content }: FinalCTAProps) {
 
   return (
     <section id="contact" className="final-cta on-dark">
-      <div className="final-overlay" />
       <div className="final-inner">
         <p className="eyebrow eyebrow-dark reveal">{finalCta.eyebrow}</p>
         <h2 className="reveal">{finalCta.title}</h2>

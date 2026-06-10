@@ -838,12 +838,6 @@ button {
   overflow: hidden;
 }
 
-.final-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.38);
-}
-
 .final-inner {
   position: relative;
   max-width: 1100px;
