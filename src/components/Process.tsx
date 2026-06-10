@@ -8,7 +8,7 @@ export function Process({ content }: ProcessProps) {
   const { process, processIntro } = content;
 
   return (
-    <section id="process" className="surface surface-transparent on-dark">
+    <section id="process" className="surface surface-contact-tint on-dark">
       <div className="section-inner">
         <div className="process-heading reveal">
           <p className="eyebrow eyebrow-dark">{processIntro.eyebrow}</p>
