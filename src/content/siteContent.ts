@@ -149,8 +149,7 @@ const en: SiteContent = {
     },
   ],
   heroRail: [
-    { type: "muted", text: "Australia" },
-    { type: "muted", text: "Small and medium-sized businesses" },
+    { type: "muted", text: "Service for small and medium-sized businesses" },
     { type: "spacer" },
     { type: "label", text: "Core systems" },
     { type: "hero", text: "AI phone agents" },
