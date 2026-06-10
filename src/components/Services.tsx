@@ -1,4 +1,3 @@
-import { ArrowUpRight } from "lucide-react";
 import type { SiteContent } from "../content/siteContent";
 
 type ServicesProps = {
@@ -21,7 +20,6 @@ export function Services({ content }: ServicesProps) {
         <div className="card-grid">
           {services.map((service) => (
             <article className="service-card reveal" key={service.number}>
-              <ArrowUpRight className="service-card-icon" size={20} strokeWidth={1.5} aria-hidden="true" />
               <div>
                 <h3>{service.title}</h3>
                 <p>{service.description}</p>
