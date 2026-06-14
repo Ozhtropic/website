@@ -9,6 +9,23 @@ npm install
 npm run dev
 ```
 
+## Connect Supabase
+
+Copy the example environment file, then add your Supabase Project URL and anon public key:
+
+```bash
+cp .env.example .env.local
+```
+
+```txt
+VITE_SUPABASE_URL=https://your-project-ref.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-public-key
+```
+
+Use the anon public key only. Never put a Supabase service role key in this frontend project.
+
+For Vercel, add the same two variables under Project Settings > Environment Variables, then redeploy.
+
 ## Add The Hero Video
 
 Place the final cinematic video at:
@@ -24,4 +41,3 @@ The page includes a branded fallback until that file is available.
 ```bash
 npm run build
 ```
-
