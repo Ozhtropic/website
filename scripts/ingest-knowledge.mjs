@@ -5,12 +5,22 @@ import process from "node:process";
 
 const SUPABASE_URL = process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL;
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
-const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_EMBEDDING_MODEL = process.env.OPENAI_EMBEDDING_MODEL || "text-embedding-3-small";
-const OPENAI_EMBEDDING_DIMENSIONS = Number(process.env.OPENAI_EMBEDDING_DIMENSIONS || 1536);
+const AI_BASE_URL = (process.env.AI_BASE_URL || process.env.OPENAI_BASE_URL || "https://api.openai.com/v1").replace(
+  /\/+$/,
+  ""
+);
+const AI_API_KEY = process.env.AI_API_KEY || process.env.OPENAI_API_KEY;
+const AI_EMBEDDING_MODEL =
+  process.env.AI_EMBEDDING_MODEL || process.env.OPENAI_EMBEDDING_MODEL || "text-embedding-3-small";
+const AI_EMBEDDING_DIMENSIONS = Number(process.env.AI_EMBEDDING_DIMENSIONS || process.env.OPENAI_EMBEDDING_DIMENSIONS || 1536);
+const AI_SEND_EMBEDDING_DIMENSIONS =
+  (process.env.AI_SEND_EMBEDDING_DIMENSIONS || process.env.OPENAI_SEND_EMBEDDING_DIMENSIONS || "").toLowerCase() ===
+  "true";
+const AI_HTTP_REFERER = process.env.AI_HTTP_REFERER || process.env.OPENROUTER_HTTP_REFERER || "";
+const AI_APP_TITLE = process.env.AI_APP_TITLE || process.env.OPENROUTER_APP_TITLE || "Ozthropic";
 
-if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !OPENAI_API_KEY) {
-  throw new Error("Missing SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, or OPENAI_API_KEY.");
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY || !AI_API_KEY) {
+  throw new Error("Missing SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, or AI_API_KEY.");
 }
 
 const projectRoot = process.cwd();
@@ -59,18 +69,33 @@ function chunkText(text, chunkSize = 1100) {
 }
 
 async function createEmbedding(input) {
-  const response = await fetch("https://api.openai.com/v1/embeddings", {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${AI_API_KEY}`,
+  };
+
+  if (AI_HTTP_REFERER) {
+    headers["HTTP-Referer"] = AI_HTTP_REFERER;
+  }
+
+  if (AI_APP_TITLE) {
+    headers["X-OpenRouter-Title"] = AI_APP_TITLE;
+  }
+
+  const body = {
+    model: AI_EMBEDDING_MODEL,
+    input,
+    encoding_format: "float",
+  };
+
+  if (AI_SEND_EMBEDDING_DIMENSIONS) {
+    body.dimensions = AI_EMBEDDING_DIMENSIONS;
+  }
+
+  const response = await fetch(`${AI_BASE_URL}/embeddings`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${OPENAI_API_KEY}`,
-    },
-    body: JSON.stringify({
-      model: OPENAI_EMBEDDING_MODEL,
-      input,
-      dimensions: OPENAI_EMBEDDING_DIMENSIONS,
-      encoding_format: "float",
-    }),
+    headers,
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
@@ -131,4 +156,3 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
-

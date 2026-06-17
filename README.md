@@ -39,15 +39,40 @@ For the chatbot server, also add:
 ```txt
 SUPABASE_URL
 SUPABASE_SERVICE_ROLE_KEY
-OPENAI_API_KEY
-OPENAI_CHAT_MODEL
-OPENAI_EMBEDDING_MODEL
-OPENAI_EMBEDDING_DIMENSIONS
+AI_BASE_URL
+AI_API_KEY
+AI_CHAT_MODEL
+AI_EMBEDDING_MODEL
+AI_EMBEDDING_DIMENSIONS
+AI_SEND_EMBEDDING_DIMENSIONS
+AI_HTTP_REFERER
+AI_APP_TITLE
 TELEGRAM_BOT_TOKEN
 TELEGRAM_WEBHOOK_SECRET
 ```
 
 `SUPABASE_SERVICE_ROLE_KEY` is server-only. Do not expose it in frontend code.
+
+## Use OpenRouter
+
+The chatbot can use OpenRouter or another OpenAI-compatible provider.
+
+For OpenRouter, add these values in Vercel:
+
+```txt
+AI_BASE_URL=https://openrouter.ai/api/v1
+AI_API_KEY=your-openrouter-api-key
+AI_CHAT_MODEL=your-openrouter-chat-model
+AI_EMBEDDING_MODEL=your-openrouter-embedding-model
+AI_EMBEDDING_DIMENSIONS=1536
+AI_SEND_EMBEDDING_DIMENSIONS=false
+AI_HTTP_REFERER=https://ozthropic.com
+AI_APP_TITLE=Ozthropic
+```
+
+The older `OPENAI_*` environment variables still work as fallbacks, but use the `AI_*` names for new setup.
+
+The Supabase schema currently uses `vector(1536)`, so choose an embedding model that returns 1536 dimensions. If you choose a different embedding size, update `supabase/schema.sql` before ingesting knowledge.
 
 ## Create The Supabase Schema
 
@@ -71,6 +96,18 @@ Then ingest them:
 
 ```bash
 npm run ingest:knowledge
+```
+
+For local OpenRouter ingestion, set these first in PowerShell:
+
+```powershell
+$env:SUPABASE_URL="https://your-project-ref.supabase.co"
+$env:SUPABASE_SERVICE_ROLE_KEY="your-supabase-secret-key"
+$env:AI_BASE_URL="https://openrouter.ai/api/v1"
+$env:AI_API_KEY="your-openrouter-api-key"
+$env:AI_EMBEDDING_MODEL="your-openrouter-embedding-model"
+$env:AI_EMBEDDING_DIMENSIONS="1536"
+$env:AI_SEND_EMBEDDING_DIMENSIONS="false"
 ```
 
 The script chunks each markdown file, creates embeddings, and upserts them into `knowledge_documents`.

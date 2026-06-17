@@ -33,20 +33,34 @@ export function parseJsonFromText(text, fallback = {}) {
   }
 }
 
+function getProviderHeaders() {
+  const headers = {
+    "Content-Type": "application/json",
+    Authorization: `Bearer ${env.aiApiKey}`,
+  };
+
+  if (env.aiHttpReferer) {
+    headers["HTTP-Referer"] = env.aiHttpReferer;
+  }
+
+  if (env.aiAppTitle) {
+    headers["X-OpenRouter-Title"] = env.aiAppTitle;
+  }
+
+  return headers;
+}
+
 export async function createChatCompletion({
   messages,
   tools = [],
   temperature = 0.2,
   maxTokens = 700,
 }) {
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
+  const response = await fetch(`${env.aiBaseUrl}/chat/completions`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env.openaiApiKey}`,
-    },
+    headers: getProviderHeaders(),
     body: JSON.stringify({
-      model: env.openaiChatModel,
+      model: env.aiChatModel,
       messages,
       tools: tools.length ? tools : undefined,
       tool_choice: tools.length ? "auto" : undefined,
@@ -57,7 +71,7 @@ export async function createChatCompletion({
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`OpenAI chat request failed: ${response.status} ${errorText}`);
+    throw new Error(`AI chat request failed: ${response.status} ${errorText}`);
   }
 
   const data = await response.json();
@@ -68,26 +82,27 @@ export async function createChatCompletion({
 }
 
 export async function createEmbedding(input) {
-  const response = await fetch("https://api.openai.com/v1/embeddings", {
+  const body = {
+    model: env.aiEmbeddingModel,
+    input,
+    encoding_format: "float",
+  };
+
+  if (env.aiSendEmbeddingDimensions) {
+    body.dimensions = env.aiEmbeddingDimensions;
+  }
+
+  const response = await fetch(`${env.aiBaseUrl}/embeddings`, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${env.openaiApiKey}`,
-    },
-    body: JSON.stringify({
-      model: env.openaiEmbeddingModel,
-      input,
-      dimensions: env.openaiEmbeddingDimensions,
-      encoding_format: "float",
-    }),
+    headers: getProviderHeaders(),
+    body: JSON.stringify(body),
   });
 
   if (!response.ok) {
     const errorText = await response.text();
-    throw new Error(`OpenAI embeddings request failed: ${response.status} ${errorText}`);
+    throw new Error(`AI embeddings request failed: ${response.status} ${errorText}`);
   }
 
   const data = await response.json();
   return data.data?.[0]?.embedding || [];
 }
-

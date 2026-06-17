@@ -7,7 +7,6 @@ export const chatTools = [
       name: "capture_lead",
       description:
         "Capture a qualified lead when the user wants follow-up, a quote, consulting, or contact from Ozthropic.",
-      strict: true,
       parameters: {
         type: "object",
         properties: {
@@ -34,7 +33,6 @@ export const chatTools = [
       name: "check_registration_status",
       description:
         "Check the current status of a registration, application, or enrolment by reference code, email, or phone.",
-      strict: true,
       parameters: {
         type: "object",
         properties: {
@@ -176,4 +174,3 @@ export async function executeToolCall(toolCall, context) {
     message: `Unknown tool: ${toolCall.function.name}`,
   };
 }
-
