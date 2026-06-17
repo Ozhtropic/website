@@ -1,4 +1,10 @@
 {
+  "rewrites": [
+    {
+      "source": "/chat",
+      "destination": "/"
+    }
+  ],
   "headers": [
     {
       "source": "/media/:path*.mp4",
