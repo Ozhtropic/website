@@ -1,4 +1,5 @@
 import { createElement, useEffect, useRef } from "react";
+import { Phone } from "lucide-react";
 import { ELEVENLABS_AGENT_ID, ELEVENLABS_WIDGET_SCRIPT_SRC } from "../config/voiceAgent";
 
 const SCRIPT_ID = "elevenlabs-convai-widget-script";
@@ -10,72 +11,8 @@ const WIDGET_TEXT_CONTENTS = JSON.stringify({
 
 const WIDGET_BUTTON_CSS = `
   .overlay {
-    position: static !important;
-    inset: auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: auto !important;
-    height: auto !important;
-    min-width: 0 !important;
-    min-height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    pointer-events: auto !important;
-    transform: none !important;
-  }
-
-  .rounded-compact-sheet.flex.items-center {
-    display: inline-flex !important;
-    align-items: center !important;
-    width: auto !important;
-    min-width: 0 !important;
-    height: auto !important;
-    min-height: 0 !important;
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-  }
-
-  .rounded-compact-sheet.flex.items-center > :first-child {
     display: none !important;
-  }
-
-  button[aria-label="Start a call"] {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    flex-direction: row-reverse !important;
-    width: auto !important;
-    height: 44px !important;
-    min-height: 44px !important;
-    border-radius: 12px !important;
-    padding: 0 16px !important;
-    background: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.84) !important;
-    color: #1f1f1f !important;
-    box-shadow: 0 10px 34px rgba(0, 0, 0, 0.14) !important;
-    font-family: "Questrial", Inter, system-ui, sans-serif !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    line-height: 1 !important;
-    gap: 10px !important;
-    white-space: nowrap !important;
-    transition:
-      transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-      background 250ms ease,
-      color 250ms ease,
-      border-color 250ms ease !important;
-  }
-
-  button[aria-label="Start a call"]:hover,
-  button[aria-label="Start a call"]:focus-visible {
-    background: #1f1f1f !important;
-    border-color: #1f1f1f !important;
-    color: #ffffff !important;
-    transform: translateY(-2px) !important;
+    pointer-events: none !important;
   }
 `;
 
@@ -96,6 +33,7 @@ type ElevenLabsVoiceAgentProps = {
 
 export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
   const widgetRef = useRef<HTMLElement | null>(null);
+  const retryStartTimerRef = useRef<number | null>(null);
 
   useEffect(() => {
     if (typeof document === "undefined" || document.getElementById(SCRIPT_ID)) return;
@@ -114,8 +52,7 @@ export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
     let attempts = 0;
     const interval = window.setInterval(() => {
       attempts += 1;
-      const applied = applyWidgetButtonStyles(widgetRef.current);
-      if (applied || attempts > 100) {
+      if (applyWidgetButtonStyles(widgetRef.current) || attempts > 100) {
         window.clearInterval(interval);
       }
     }, 100);
@@ -123,8 +60,41 @@ export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
     return () => window.clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    return () => {
+      if (retryStartTimerRef.current) {
+        window.clearInterval(retryStartTimerRef.current);
+      }
+    };
+  }, []);
+
+  const handleStartCall = () => {
+    if (startElevenLabsCall(widgetRef.current)) {
+      return;
+    }
+
+    if (retryStartTimerRef.current) {
+      window.clearInterval(retryStartTimerRef.current);
+    }
+
+    let attempts = 0;
+    retryStartTimerRef.current = window.setInterval(() => {
+      attempts += 1;
+      if (startElevenLabsCall(widgetRef.current) || attempts > 40) {
+        if (retryStartTimerRef.current) {
+          window.clearInterval(retryStartTimerRef.current);
+          retryStartTimerRef.current = null;
+        }
+      }
+    }, 100);
+  };
+
   return (
     <div className={`voice-agent-widget${className ? ` ${className}` : ""}`} aria-label="Ozthropic voice agent">
+      <button type="button" className="button button-light voice-agent-button" onClick={handleStartCall}>
+        Start a call
+        <Phone size={16} strokeWidth={1.8} />
+      </button>
       {createElement("elevenlabs-convai", {
         ref: widgetRef,
         "agent-id": ELEVENLABS_AGENT_ID,
@@ -140,4 +110,12 @@ export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
       })}
     </div>
   );
+}
+
+function startElevenLabsCall(widget: HTMLElement | null) {
+  const startButton = widget?.shadowRoot?.querySelector<HTMLButtonElement>('button[aria-label="Start a call"]');
+  if (!startButton) return false;
+
+  startButton.click();
+  return true;
 }
