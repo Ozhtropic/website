@@ -8,6 +8,7 @@ import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { VideoBackdrop } from "./components/VideoBackdrop";
 import { ChatPage } from "./components/ChatPage";
+import { FloatingContactActions } from "./components/FloatingContactActions";
 import { defaultLanguage, type Language, siteContent } from "./content/siteContent";
 import { useRevealObserver } from "./hooks/useRevealObserver";
 import { chatContent } from "./content/chatContent";
@@ -66,6 +67,7 @@ export default function App() {
               <FinalCTA content={content} />
             </main>
             <Footer content={content} />
+            <FloatingContactActions language={language} />
           </>
         )}
       </div>
