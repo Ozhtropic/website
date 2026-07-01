@@ -13,18 +13,29 @@ const WIDGET_BUTTON_CSS = `
   .overlay {
     position: fixed !important;
     inset: auto 32px 32px auto !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    width: auto !important;
-    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    justify-content: flex-end !important;
+    width: min(600px, calc(100vw - 64px)) !important;
+    height: min(640px, calc(100vh - 64px)) !important;
     min-width: 0 !important;
     min-height: 0 !important;
     padding: 0 !important;
     margin: 0 !important;
-    pointer-events: auto !important;
+    pointer-events: none !important;
     transform: none !important;
     z-index: 2147483647 !important;
+  }
+
+  .overlay > *,
+  .sheet,
+  .rounded-compact-sheet,
+  button,
+  input,
+  textarea,
+  a {
+    pointer-events: auto !important;
   }
 
   .rounded-compact-sheet.flex.items-center {
@@ -102,6 +113,8 @@ const WIDGET_BUTTON_CSS = `
   @media (max-width: 620px) {
     .overlay {
       inset: auto 16px 16px auto !important;
+      width: calc(100vw - 32px) !important;
+      height: min(620px, calc(100vh - 32px)) !important;
     }
   }
 `;
