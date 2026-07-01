@@ -76,6 +76,17 @@ const WIDGET_BUTTON_CSS = `
       border-color 250ms ease !important;
   }
 
+  button[aria-label="Chat"],
+  button[aria-label="Message"] {
+    flex-direction: row !important;
+    min-width: 104px !important;
+  }
+
+  button[aria-label="Chat"]::before,
+  button[aria-label="Message"]::before {
+    content: "Chat";
+  }
+
   button[aria-label="Start a call"]:hover,
   button[aria-label="Start a call"]:focus-visible,
   button[aria-label="Chat"]:hover,

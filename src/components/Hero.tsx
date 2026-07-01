@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowUpRight } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import type { SiteContent } from "../content/siteContent";
 
 const LEFT_SCROLL_DISTANCE = 1560;
@@ -31,7 +31,7 @@ export function Hero({ content }: HeroProps) {
   const [progress, setProgress] = useState(0);
   const [reducedMotion, setReducedMotion] = useState(prefersReducedMotion);
   const [mobileTextFlow, setMobileTextFlow] = useState(getMobileTextFlow);
-  const { brand, finalCta, heroRail, heroStages, ui } = content;
+  const { brand, heroRail, heroStages, ui } = content;
 
   useEffect(() => {
     const query = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -99,17 +99,6 @@ export function Hero({ content }: HeroProps) {
                       {after}
                     </h1>
                     <p>{stage.body}</p>
-                    {stage === heroStages[0] && (
-                      <div className="hero-actions">
-                        <a className="button button-light" href={finalCta.primary.href}>
-                          {ui.startConversation}
-                          <ArrowUpRight size={16} strokeWidth={1.8} />
-                        </a>
-                        <a className="button button-ghost-dark" href="#services">
-                          {ui.seeServices}
-                        </a>
-                      </div>
-                    )}
                   </article>
                 );
               })}
