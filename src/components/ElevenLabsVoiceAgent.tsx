@@ -10,8 +10,8 @@ const WIDGET_TEXT_CONTENTS = JSON.stringify({
 
 const WIDGET_BUTTON_CSS = `
   .overlay {
-    position: static !important;
-    inset: auto !important;
+    position: fixed !important;
+    inset: auto 32px 32px auto !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -23,6 +23,7 @@ const WIDGET_BUTTON_CSS = `
     margin: 0 !important;
     pointer-events: auto !important;
     transform: none !important;
+    z-index: 2147483647 !important;
   }
 
   .rounded-compact-sheet.flex.items-center {
@@ -78,6 +79,12 @@ const WIDGET_BUTTON_CSS = `
     border-color: #1f1f1f !important;
     color: #ffffff !important;
     transform: translateY(-2px) !important;
+  }
+
+  @media (max-width: 620px) {
+    .overlay {
+      inset: auto 16px 16px auto !important;
+    }
   }
 `;
 

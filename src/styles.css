@@ -90,9 +90,6 @@ button {
 }
 
 .floating-contact-actions {
-  position: fixed;
-  right: 32px;
-  bottom: 32px;
   z-index: 80;
   display: inline-flex;
   align-items: center;
@@ -1152,15 +1149,6 @@ button {
     flex-direction: column;
   }
 
-  .floating-contact-actions {
-    right: 16px;
-    bottom: 16px;
-    max-width: calc(100vw - 32px);
-  }
-
-  .floating-contact-actions elevenlabs-convai {
-    max-width: 46vw;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
