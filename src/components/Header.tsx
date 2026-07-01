@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { ArrowUpRight, CalendarDays, Menu, X } from "lucide-react";
 import type { Language, SiteContent } from "../content/siteContent";
+import { ElevenLabsVoiceAgent } from "./ElevenLabsVoiceAgent";
 import { OzLogo } from "./OzLogo";
 
 type HeaderProps = {
@@ -28,6 +29,7 @@ export function Header({ content, language, onLanguageChange }: HeaderProps) {
 
         <div className="header-actions">
           <LanguageSwitch content={content} language={language} onLanguageChange={onLanguageChange} />
+          <ElevenLabsVoiceAgent className="header-voice-agent" />
           <a className="button button-light header-cta" href={brand.bookingUrl} target="_blank" rel="noreferrer">
             {ui.booking}
             <CalendarDays size={16} strokeWidth={1.8} />

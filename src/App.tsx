@@ -8,7 +8,6 @@ import { FinalCTA } from "./components/FinalCTA";
 import { Footer } from "./components/Footer";
 import { VideoBackdrop } from "./components/VideoBackdrop";
 import { ChatPage } from "./components/ChatPage";
-import { ElevenLabsVoiceAgent } from "./components/ElevenLabsVoiceAgent";
 import { defaultLanguage, type Language, siteContent } from "./content/siteContent";
 import { useRevealObserver } from "./hooks/useRevealObserver";
 import { chatContent } from "./content/chatContent";
@@ -70,7 +69,6 @@ export default function App() {
           </>
         )}
       </div>
-      {!isChatRoute ? <ElevenLabsVoiceAgent /> : null}
     </div>
   );
 }

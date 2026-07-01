@@ -9,10 +9,34 @@ const WIDGET_TEXT_CONTENTS = JSON.stringify({
 });
 
 const WIDGET_BUTTON_CSS = `
+  .overlay {
+    position: static !important;
+    inset: auto !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: 0 !important;
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    pointer-events: auto !important;
+    transform: none !important;
+  }
+
   .rounded-compact-sheet.flex.items-center {
+    display: inline-flex !important;
+    align-items: center !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    min-height: 0 !important;
     background: transparent !important;
     box-shadow: none !important;
     padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
   }
 
   .rounded-compact-sheet.flex.items-center > :first-child {
@@ -20,6 +44,12 @@ const WIDGET_BUTTON_CSS = `
   }
 
   button[aria-label="Start a call"] {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: row-reverse !important;
+    width: auto !important;
+    height: 44px !important;
     min-height: 44px !important;
     border-radius: 12px !important;
     padding: 0 16px !important;
@@ -32,6 +62,7 @@ const WIDGET_BUTTON_CSS = `
     font-weight: 600 !important;
     line-height: 1 !important;
     gap: 10px !important;
+    white-space: nowrap !important;
     transition:
       transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
       background 250ms ease,
@@ -59,7 +90,11 @@ function applyWidgetButtonStyles(widget: HTMLElement | null) {
   return true;
 }
 
-export function ElevenLabsVoiceAgent() {
+type ElevenLabsVoiceAgentProps = {
+  className?: string;
+};
+
+export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
   const widgetRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -89,7 +124,7 @@ export function ElevenLabsVoiceAgent() {
   }, []);
 
   return (
-    <div className="voice-agent-widget" aria-label="Ozthropic voice agent">
+    <div className={`voice-agent-widget${className ? ` ${className}` : ""}`} aria-label="Ozthropic voice agent">
       {createElement("elevenlabs-convai", {
         ref: widgetRef,
         "agent-id": ELEVENLABS_AGENT_ID,

@@ -73,8 +73,20 @@ button {
 }
 
 .voice-agent-widget {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   z-index: 80;
+  height: 44px;
+}
+
+.voice-agent-widget elevenlabs-convai {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: 44px;
 }
 
 .grain::before {
@@ -940,7 +952,8 @@ button {
   }
 
   .nav-pill,
-  .header-cta {
+  .header-cta,
+  .header-voice-agent {
     display: none;
   }
 
