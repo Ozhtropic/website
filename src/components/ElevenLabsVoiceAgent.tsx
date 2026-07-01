@@ -57,9 +57,13 @@ const WIDGET_BUTTON_CSS = `
     display: none !important;
   }
 
-  button[aria-label="Start a call"],
-  button[aria-label="Chat"],
-  button[aria-label="Message"] {
+  button[aria-label="Start a call"] {
+    display: none !important;
+  }
+
+  .rounded-compact-sheet.flex.items-center button[aria-label="Start a call"],
+  .rounded-compact-sheet.flex.items-center button[aria-label="Chat"],
+  .rounded-compact-sheet.flex.items-center button[aria-label="Message"] {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -87,23 +91,23 @@ const WIDGET_BUTTON_CSS = `
       border-color 250ms ease !important;
   }
 
-  button[aria-label="Chat"],
-  button[aria-label="Message"] {
+  .rounded-compact-sheet.flex.items-center button[aria-label="Chat"],
+  .rounded-compact-sheet.flex.items-center button[aria-label="Message"] {
     flex-direction: row !important;
     min-width: 104px !important;
   }
 
-  button[aria-label="Chat"]::before,
-  button[aria-label="Message"]::before {
+  .rounded-compact-sheet.flex.items-center button[aria-label="Chat"]::before,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Message"]::before {
     content: "Chat";
   }
 
-  button[aria-label="Start a call"]:hover,
-  button[aria-label="Start a call"]:focus-visible,
-  button[aria-label="Chat"]:hover,
-  button[aria-label="Chat"]:focus-visible,
-  button[aria-label="Message"]:hover,
-  button[aria-label="Message"]:focus-visible {
+  .rounded-compact-sheet.flex.items-center button[aria-label="Start a call"]:hover,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Start a call"]:focus-visible,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Chat"]:hover,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Chat"]:focus-visible,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Message"]:hover,
+  .rounded-compact-sheet.flex.items-center button[aria-label="Message"]:focus-visible {
     background: #1f1f1f !important;
     border-color: #1f1f1f !important;
     color: #ffffff !important;
