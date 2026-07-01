@@ -6,6 +6,7 @@ const WIDGET_STYLE_ID = "ozthropic-elevenlabs-widget-style";
 const WIDGET_TEXT_CONTENTS = JSON.stringify({
   main_label: "",
   start_call: "Start a call",
+  start_chat: "Chat",
 });
 
 const WIDGET_BUTTON_CSS = `
@@ -45,7 +46,9 @@ const WIDGET_BUTTON_CSS = `
     display: none !important;
   }
 
-  button[aria-label="Start a call"] {
+  button[aria-label="Start a call"],
+  button[aria-label="Chat"],
+  button[aria-label="Message"] {
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -74,7 +77,11 @@ const WIDGET_BUTTON_CSS = `
   }
 
   button[aria-label="Start a call"]:hover,
-  button[aria-label="Start a call"]:focus-visible {
+  button[aria-label="Start a call"]:focus-visible,
+  button[aria-label="Chat"]:hover,
+  button[aria-label="Chat"]:focus-visible,
+  button[aria-label="Message"]:hover,
+  button[aria-label="Message"]:focus-visible {
     background: #1f1f1f !important;
     border-color: #1f1f1f !important;
     color: #ffffff !important;
@@ -138,8 +145,8 @@ export function ElevenLabsVoiceAgent({ className }: ElevenLabsVoiceAgentProps) {
         "agent-id": ELEVENLABS_AGENT_ID,
         variant: "compact",
         placement: "bottom-right",
-        transcript: "false",
-        "text-input": "false",
+        transcript: "true",
+        "text-input": "true",
         "default-expanded": "false",
         "always-expanded": "false",
         "show-avatar-when-collapsed": "false",
