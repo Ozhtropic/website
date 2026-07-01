@@ -67,7 +67,7 @@ export default function App() {
               <FinalCTA content={content} />
             </main>
             <Footer content={content} />
-            <FloatingContactActions language={language} />
+            <FloatingContactActions />
           </>
         )}
       </div>

@@ -100,10 +100,6 @@ button {
   gap: 10px;
 }
 
-.floating-chat-button {
-  height: 44px;
-}
-
 .grain::before {
   content: "";
   position: fixed;
@@ -1162,7 +1158,6 @@ button {
     max-width: calc(100vw - 32px);
   }
 
-  .floating-contact-actions .button,
   .floating-contact-actions elevenlabs-convai {
     max-width: 46vw;
   }
