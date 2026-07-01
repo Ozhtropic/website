@@ -72,6 +72,11 @@ button {
   z-index: 2;
 }
 
+.voice-agent-widget {
+  position: relative;
+  z-index: 80;
+}
+
 .grain::before {
   content: "";
   position: fixed;
